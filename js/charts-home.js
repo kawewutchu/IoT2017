@@ -12,7 +12,7 @@ $(document).ready(function () {
     // ------------------------------------------------------ //
     var LINECHART = $('#lineCahrt');
     var myLineChart = new Chart(LINECHART, {
-        type: 'line',
+        type: 'steppedLine',
         options: {
             legend: {
                 display: false
@@ -71,35 +71,110 @@ $(document).ready(function () {
         }
     });
 
-
     // ------------------------------------------------------- //
-    // Pie Chart
+    // Average Bar Chart
     // ------------------------------------------------------ //
-    var PIECHART = $('#pieChart');
-    var myPieChart = new Chart(PIECHART, {
-        type: 'doughnut',
+    var BARCHART = $('#barChart')
+    var myBarChart = new Chart(BARCHART, {
+        type: 'bar',
         data: {
-            labels: [
-                "First",
-                "Second",
-                "Third"
-            ],
+            labels: ["A", "B", "C", "D", "E", "F", "G"],
             datasets: [
                 {
-                    data: [300, 50, 100],
+                    label: "จำนวนคนเข้าชม",
+                    backgroundColor: [
+                        'rgba(244, 67, 54,1.0)',
+                        'rgba(156, 39, 176,1.0)',
+                        'rgba(33, 150, 243,1.0)',
+                        'rgba(0, 188, 212,1.0)',
+                        'rgba(205, 220, 57,1.0)',
+                        'rgba(255, 193, 7,1.0)',
+                        'rgba(96, 125, 139,1.0)'
+                    ],
+                    borderColor: [
+                        'rgba(244, 67, 54,1.0)',
+                        'rgba(156, 39, 176,1.0)',
+                        'rgba(33, 150, 243,1.0)',
+                        'rgba(0, 188, 212,1.0)',
+                        'rgba(205, 220, 57,1.0)',
+                        'rgba(255, 193, 7,1.0)',
+                        'rgba(96, 125, 139,1.0)'
+                    ],
+                    borderWidth: 1,
+                    data: [65, 59, 80, 81, 56, 55, 40, 0],
+                }
+            ]
+        }
+    });
+
+    // ------------------------------------------------------- //
+    // Men Pie Chart
+    // ------------------------------------------------------ //
+    var MENPIECHART = $('#MenPieChart');
+    var menPieChart = new Chart(MENPIECHART, {
+        type: 'doughnut',
+        data: {
+            labels: ["A", "B", "C", "D", "E", "F", "G"],
+            datasets: [
+                {
+                    data: [65, 59, 80, 81, 56, 55, 40, 0],
                     borderWidth: [1, 1, 1],
                     backgroundColor: [
-                        brandPrimary,
-                        "rgba(75,192,192,1)",
-                        "#FFCE56"
+                        'rgba(244, 67, 54,1.0)',
+                        'rgba(156, 39, 176,1.0)',
+                        'rgba(33, 150, 243,1.0)',
+                        'rgba(0, 188, 212,1.0)',
+                        'rgba(205, 220, 57,1.0)',
+                        'rgba(255, 193, 7,1.0)',
+                        'rgba(96, 125, 139,1.0)'
                     ],
                     hoverBackgroundColor: [
-                        brandPrimary,
-                        "rgba(75,192,192,1)",
-                        "#FFCE56"
+                        'rgba(244, 67, 54,1.0)',
+                        'rgba(156, 39, 176,1.0)',
+                        'rgba(33, 150, 243,1.0)',
+                        'rgba(0, 188, 212,1.0)',
+                        'rgba(205, 220, 57,1.0)',
+                        'rgba(255, 193, 7,1.0)',
+                        'rgba(96, 125, 139,1.0)'
                     ]
                 }]
         }
     });
+
+    // ------------------------------------------------------- //
+    // Women Pie Chart
+    // ------------------------------------------------------ //
+    var WOMENPIECHART = $('#WomenPieChart');
+    var WomenPieChart = new Chart(WOMENPIECHART, {
+        type: 'doughnut',
+        data: {
+            labels: ["A", "B", "C", "D", "E", "F", "G"],
+            datasets: [
+                {
+                    data: [65, 59, 80, 81, 56, 55, 40, 0],
+                    borderWidth: [1, 1, 1],
+                    backgroundColor: [
+                        'rgba(244, 67, 54,1.0)',
+                        'rgba(156, 39, 176,1.0)',
+                        'rgba(33, 150, 243,1.0)',
+                        'rgba(0, 188, 212,1.0)',
+                        'rgba(205, 220, 57,1.0)',
+                        'rgba(255, 193, 7,1.0)',
+                        'rgba(96, 125, 139,1.0)'
+                    ],
+                    hoverBackgroundColor: [
+                        'rgba(244, 67, 54,1.0)',
+                        'rgba(156, 39, 176,1.0)',
+                        'rgba(33, 150, 243,1.0)',
+                        'rgba(0, 188, 212,1.0)',
+                        'rgba(205, 220, 57,1.0)',
+                        'rgba(255, 193, 7,1.0)',
+                        'rgba(96, 125, 139,1.0)'
+                    ]
+                }]
+        }
+    });
+
+   
 
 });
