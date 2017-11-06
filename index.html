@@ -147,6 +147,8 @@
           </div>
       </section>
 
+      <h1 id="hasOne"></h1>
+
       <section class="statistics section-padding">
           <div class="container-fluid">
               <div class="row d-flex align-items-stretch">
@@ -243,6 +245,10 @@
         messagingSenderId: "399751209911"
       };
       firebase.initializeApp(config);
+
+      var hasOne = document.getElementById('hasOne');
+      var dbRef = firebase.database().ref().child('text');
+      dbRef.on('value', snap => hasOne.innerText = snap.val());
     </script>
 
     <!-- Javascript files-->
