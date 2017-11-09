@@ -124,25 +124,17 @@
           </div>
         </div>
       </section>
+
        <!-- Gender Rank -->
       <section class="statistics section-padding">
           <div class="container-fluid">
               <div class="row d-flex align-items-stretch">
-                <div class="col-xl-6 col-md-12 col-12">
+                <div class="col-xl-12 col-md-12 col-12">
                   <div class="wrapper text-center">
-                      <h2 class="display h4">Men Rank report</h2>
+                      <h2 class="display h4">Time in Department report</h2>
                       <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>
                       <div class="card-body">
                         <canvas id="MenPieChart"></canvas>
-                      </div>
-                  </div>
-                </div>
-                <div class="col-xl-6 col-md-12 col-12">
-                  <div class="wrapper text-center">
-                      <h2 class="display h4">Women Rank report</h2>
-                      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>
-                      <div class="card-body">
-                        <canvas id="WomenPieChart"></canvas>
                       </div>
                   </div>
                 </div>
@@ -156,7 +148,7 @@
             <div class="row d-flex align-items-stretch">
               <div class="col-xl-12 col-md-12 col-12">
                 <div class="wrapper text-center">
-                    <h2 class="display h4">Men Rank report</h2>
+                    <h2 class="display h4">Current Cart Position</h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>
                     <div class="card-body">
                       <canvas class="heatmap" id="heatMap"></canvas>
@@ -187,5 +179,11 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
+
+    <!-- MQTT Client JavaScript -->
+    <script src="mqtt/js/mqttws31.js"></script>
+    <script src="main.js"></script>
+
+
   </body>
 </html>
