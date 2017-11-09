@@ -1,76 +1,118 @@
 /*global $, document, Chart, LINECHART, data, options, window*/
-$(document).ready(function () {
+var data = {
+    A : 0,
+    B : 0,
+    C : 0,
+    D : 0
+};
+var rank = [0, 0, 0, 0, 0]
 
-    'use strict';
+var config = {
+    apiKey: "AIzaSyAwSeCQL1IOPL-4k85q2NH4PzmBja1gSE8",
+    authDomain: "iot2017-d5b6f.firebaseapp.com",
+    databaseURL: "https://iot2017-d5b6f.firebaseio.com",
+    projectId: "iot2017-d5b6f",
+    storageBucket: "",
+    messagingSenderId: "399751209911"
+};
+firebase.initializeApp(config);
+
+var preObject = document.getElementById('paths');
+var dbRef = firebase.database().ref().child('paths');
+
+dbRef.on('child_added', snap => {
+    var pathsData = snap.val().path
+    readDate(pathsData)
+    
+    var index = 0;
+    for(i in data) {
+        rank[index] = data[i]
+        index += 1   
+    }
+    console.log(rank)
+    createChart()
+});
+
+function readDate(pathsData) {
+    
+    for(i in pathsData) {
+        data[pathsData[i]] += 1
+    }
+    
+    console.log(data)
+}
+
+
+function createChart(){
 
     // Main Template Color
     var brandPrimary = '#33b35a';
-
-
     // ------------------------------------------------------- //
-    // Line Chart
+    // Average Bar Chart
     // ------------------------------------------------------ //
-    var LINECHART = $('#lineCahrt');
-    var myLineChart = new Chart(LINECHART, {
-        type: 'steppedLine',
-        options: {
-            legend: {
-                display: false
-            }
-        },
+    var HEATMAP = $('#heatMap')
+    var myHEATMAP = new Chart(HEATMAP, {
+        type: 'bubble',
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"],
-            datasets: [
-                {
-                    label: "My First dataset",
-                    fill: true,
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(77, 193, 75, 0.4)",
-                    borderColor: brandPrimary,
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    borderWidth: 1,
-                    pointBorderColor: brandPrimary,
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: brandPrimary,
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 0,
-                    data: [50, 20, 60, 31, 52, 22, 40],
-                    spanGaps: false
-                },
-                {
-                    label: "My First dataset",
-                    fill: true,
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(75,192,192,0.4)",
-                    borderColor: "rgba(75,192,192,1)",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    borderWidth: 1,
-                    pointBorderColor: "rgba(75,192,192,1)",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [65, 59, 30, 81, 46, 55, 30],
-                    spanGaps: false
-                }
-            ]
-        }
-    });
+            datasets: [{
+                label: ['CartA'],
+                data: [{
+                    x: 80,
+                    y: 70,
+                    r: 40
+                }],
+                backgroundColor: 'rgba(156, 39, 176,0.8)'
+            },
+            {
+                label: ['CartB'],
+                data: [{
+                  x: 60,
+                  y: 20,
+                  r: 40
+                }],
+                backgroundColor: 'rgba(244, 67, 54,0.8)'
+            },
+            {
+                label: ['CartC'],
+                data: [{
+                  x: 50,
+                  y: 10,
+                  r: 40
+                }],
+                backgroundColor: 'rgba(33, 150, 243,0.8)'
+            }
+        
+        ]
+        },
+        options: {
+                    responsive: true,
+                    title:{
+                        display:true,
+                    },
+                    tooltips: {
+                            callbacks: {
 
+                            }
+                    },
+                    scales: {
+                        
+                        yAxes : [{
+                            display: false,
+                            ticks : {
+                                max : 100,    
+                                min : 0
+                            }
+                        }],
+                        xAxes : [{
+                            display: false,
+                            ticks : {
+                                max : 100,    
+                                min : 0
+                            }
+                        }]
+                    }
+                }
+    });
     // ------------------------------------------------------- //
     // Average Bar Chart
     // ------------------------------------------------------ //
@@ -78,7 +120,7 @@ $(document).ready(function () {
     var myBarChart = new Chart(BARCHART, {
         type: 'bar',
         data: {
-            labels: ["A", "B", "C", "D", "E", "F", "G"],
+            labels: ["A", "B", "C", "D"],
             datasets: [
                 {
                     label: "จำนวนคนเข้าชม",
@@ -101,9 +143,24 @@ $(document).ready(function () {
                         'rgba(96, 125, 139,1.0)'
                     ],
                     borderWidth: 1,
-                    data: [65, 59, 80, 81, 56, 55, 40, 0],
+                    data: rank,
                 }
             ]
+        },
+        options: {
+            responsive: true,
+            title:{
+                display:true,
+            },
+            scales: {
+                
+                yAxes : [{
+                    ticks : {
+                        max : 15,    
+                        min : 0
+                    }
+                }],
+            }
         }
     });
 
@@ -174,7 +231,4 @@ $(document).ready(function () {
                 }]
         }
     });
-
-   
-
-});
+}
