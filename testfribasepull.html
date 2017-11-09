@@ -63,11 +63,25 @@
           </div>
         </nav>
       </header>
-   <pre id="paths"></pre>
 
-   <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
-   <script src="app.js"></script>
+   <h1 id="mqtt-status"></h1>
 
+      <!-- Gender Rank -->
+      <section class="statistics section-padding">
+        <div class="container-fluid">
+            <div class="row d-flex align-items-stretch">
+              <div class="col-xl-12 col-md-12 col-12">
+                <div class="wrapper text-center">
+                    <h2 class="display h4">Men Rank report</h2>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>
+                    <div class="card-body">
+                      <canvas class="heatmap" id="heatMap"></canvas>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
 
     
    
@@ -93,5 +107,11 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
+
+
+    <!-- MQTT Client JavaScript -->
+    <script src="mqtt/js/mqttws31.js"></script>
+    <script src="main.js"></script>
+
   </body>
 </html>
