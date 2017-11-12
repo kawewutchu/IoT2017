@@ -1,22 +1,28 @@
 var positionA = [{
-        x: 10,
-        y: 70,
+        x: 30,//10-40
+        y: 80,//50-100
         r: 40
     }]
 var positionB = [{
-        x: 20,
-        y: 10,
+        x: 20,//10-40
+        y: 30,//10-50
         r: 40
     }]
 var positionC = [{
-        x: 40,
-        y: 70,
+        x: 70,
+        y: 40,
         r: 40
 }]
 
+var positionC = [{
+    x: 70,
+    y: 90,
+    r: 40
+}]
+
 var positionCartA = [{
-    x: 40,
-    y: 70,
+    x: 70,
+    y: 90,
     r: 40
 }]
 
@@ -76,6 +82,8 @@ $(function() {
     // Update Graph
     var update = function () {
         var HEATMAP = $('#heatMap')
+        // HEATMAP.canvas.width = 500;
+        // HEATMAP.canvas.height = 500;
         var myHEATMAP = new Chart(HEATMAP, {
             type: 'bubble',
             data: {
