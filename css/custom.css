@@ -1,6 +1,7 @@
 /* your styles go here */
 .heatmap {
     background-image: url("../map.jpg");
+    background-size: 1030px 518px;
     /* background-color: black; */
 }
 

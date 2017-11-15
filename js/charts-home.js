@@ -5,7 +5,9 @@ var data = {
     C : 0,
     D : 0
 };
+
 var DataRankDepartment = [0, 0, 0, 0, 0]
+var DataTimeDepartment = [0, 0, 0, 0, 0]
 
 var config = {
     apiKey: "AIzaSyAwSeCQL1IOPL-4k85q2NH4PzmBja1gSE8",
@@ -22,8 +24,10 @@ var dbRef = firebase.database().ref().child('paths');
 
 dbRef.on('child_added', snap => {
     var pathsData = snap.val().path
-    readDate(pathsData)
-    
+    var timesData = snap.val().time
+
+    readPaths(pathsData)
+    readTimes(timesData)
     var index = 0;
     for(i in data) {
         DataRankDepartment[index] = data[i]
@@ -33,20 +37,27 @@ dbRef.on('child_added', snap => {
     createChart()
 });
 
-function readDate(pathsData) {
+function readTimes(timesData) {
+    
+    for(i in timesData) {
+        DataTimeDepartment[i] = timesData[i]
+    }
+   // console.log(data)
+}
+
+function readPaths(pathsData) {
     
     for(i in pathsData) {
         data[pathsData[i]] += 1
     }
-    
-    console.log(data)
+    //console.log(pathsData)
 }
 
 
 function createChart(){
 
     // ------------------------------------------------------- //
-    // Average Rank Bar Chart
+    // Average time  Bar Chart
     // ------------------------------------------------------ //
 
     var TIMEBARCHART = $('#timeBarChart')
@@ -76,7 +87,7 @@ function createChart(){
                         'rgba(96, 125, 139,1.0)'
                     ],
                     borderWidth: 1,
-                    data: DataRankDepartment,
+                    data: DataTimeDepartment,
                 }
             ]
         },
@@ -149,67 +160,67 @@ function createChart(){
         }
     });
 
-    var HEATMAP = $('#heatMap')
-    var myHEATMAP = new Chart(HEATMAP, {
-        type: 'bubble',
-        data: {
-            datasets: [{
-                label: ['CartA'],
-                data: [{
-                    x: 80,
-                    y: 70,
-                    r: 40
-                }],
-                backgroundColor: 'rgba(156, 39, 176,0.8)'
-            },
-            {
-                label: ['CartB'],
-                data: [{
-                  x: 60,
-                  y: 20,
-                  r: 40
-                }],
-                backgroundColor: 'rgba(244, 67, 54,0.8)'
-            },
-            {
-                label: ['CartC'],
-                data: [{
-                  x: 50,
-                  y: 10,
-                  r: 40
-                }],
-                backgroundColor: 'rgba(33, 150, 243,0.8)'
-            }
+    // var HEATMAP = $('#heatMap')
+    // var myHEATMAP = new Chart(HEATMAP, {
+    //     type: 'bubble',
+    //     data: {
+    //         datasets: [{
+    //             label: ['CartA'],
+    //             data: [{
+    //                 x: 80,
+    //                 y: 70,
+    //                 r: 40
+    //             }],
+    //             backgroundColor: 'rgba(156, 39, 176,0.8)'
+    //         },
+    //         {
+    //             label: ['CartB'],
+    //             data: [{
+    //               x: 60,
+    //               y: 20,
+    //               r: 40
+    //             }],
+    //             backgroundColor: 'rgba(244, 67, 54,0.8)'
+    //         },
+    //         {
+    //             label: ['CartC'],
+    //             data: [{
+    //               x: 50,
+    //               y: 10,
+    //               r: 40
+    //             }],
+    //             backgroundColor: 'rgba(33, 150, 243,0.8)'
+    //         }
         
-        ]
-        },
-        options: {
-                    responsive: true,
-                    title:{
-                        display:true,
-                    },
-                    tooltips: {
-                            callbacks: {
+    //     ]
+    //     },
+    //     options: {
+    //                 responsive: true,
+    //                 title:{
+    //                     display:true,
+    //                 },
+    //                 tooltips: {
+    //                         callbacks: {
 
-                            }
-                    },
-                    scales: {
+    //                         }
+    //                 },
+    //                 scales: {
                         
-                        yAxes : [{
-                            display: false,
-                            ticks : {
-                                max : 100,    
-                                min : 0
-                            }
-                        }],
-                        xAxes : [{
-                            display: false,
-                            ticks : {
-                                max : 100,    
-                                min : 0
-                            }
-                        }]
-                    }
-                }
-    });
+    //                     yAxes : [{
+    //                         display: false,
+    //                         ticks : {
+    //                             max : 100,    
+    //                             min : 0
+    //                         }
+    //                     }],
+    //                     xAxes : [{
+    //                         display: false,
+    //                         ticks : {
+    //                             max : 100,    
+    //                             min : 0
+    //                         }
+    //                     }]
+    //                 }
+    //             }
+    // });
 }

@@ -1,9 +1,9 @@
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://iot2017-d5b6f.firebaseio.com/', None)
 new_user = {
-    'name' : 'cartB',
+    'name' : 'carta',
     'path' : ["C", "A", "B"],
-    'time' : ["2", "4", "5"],
+    'time' : [1, 2, 5],
     'date' : "21/12/2017"
 }
 
